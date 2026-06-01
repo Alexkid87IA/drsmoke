@@ -298,7 +298,7 @@ a { text-decoration: none; color: inherit; }
 /* ---- SECTION ---- */
 
 .section { padding: clamp(80px, 12vw, 140px) 0; }
-.section-inner { max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px); }
+.section-inner { max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px); position: relative; z-index: 1; }
 .section-title {
   font-family: var(--ff-display);
   font-size: clamp(32px, 4.5vw, 56px);
@@ -307,6 +307,24 @@ a { text-decoration: none; color: inherit; }
   line-height: 1;
 }
 .section-title em { font-style: italic; color: var(--sage); }
+
+/* ---- FILIGRANE BG ---- */
+.bestsellers-section,
+.reviews-section { position: relative; overflow: hidden; }
+
+.bestsellers-section::before,
+.reviews-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.07;
+  pointer-events: none;
+}
+.bestsellers-section::before { background-image: url('https://images.unsplash.com/photo-1501004318855-b174af8b0529?w=1920&q=80'); }
+.reviews-section::before { background-image: url('https://images.unsplash.com/photo-1501004318855-b174af8b0529?w=1920&q=80'); }
 
 /* ---- BEST-SELLERS ---- */
 
@@ -733,8 +751,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 640px) {
-  .nav-wa span { display: none; }
-  .nav-wa { padding: 8px; }
+  .nav-wa { display: none; }
   .hero-editorial h1 { font-size: clamp(28px, 8vw, 40px); }
   .hero-cat {
     flex: 0 0 85%;
