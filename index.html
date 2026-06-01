@@ -694,6 +694,15 @@ a { text-decoration: none; color: inherit; }
   .hero-swipe-hint { display: block; }
   .bs-grid { grid-template-columns: 1fr 1fr; }
   .engage-strip { grid-template-columns: 1fr 1fr; }
+  .engagements-section { height: auto; }
+  .engage-image { position: relative; height: clamp(200px, 40vw, 280px); }
+  .engage-content {
+    position: relative;
+    padding: 32px clamp(20px, 4vw, 56px);
+    background: var(--black);
+  }
+  .engage-content h2 { margin-bottom: 20px; }
+  .engage-strip { gap: 20px; }
   .reviews-layout { grid-template-columns: 1fr; }
   .reviews-badge { position: static; }
   .footer-top { grid-template-columns: 1fr 1fr; }
