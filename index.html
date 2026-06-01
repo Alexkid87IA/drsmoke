@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0A">
+<title>Dr Smoke — CBD Shop Biot | Fleurs, Huiles, Resines, Cosmetiques</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black: #0A0A0A;
+  --black-2: #111111;
+  --black-3: #191919;
+  --white: #FFFFFF;
+  --white-90: rgba(255,255,255,0.9);
+  --white-70: rgba(255,255,255,0.7);
+  --white-60: rgba(255,255,255,0.6);
+  --white-40: rgba(255,255,255,0.4);
+  --white-20: rgba(255,255,255,0.2);
+  --white-10: rgba(255,255,255,0.1);
+  --white-05: rgba(255,255,255,0.05);
+  --sage: #7A9E7E;
+  --sage-soft: rgba(122,158,126,0.12);
+  --sage-glow: rgba(122,158,126,0.3);
+
+  --ff-display: 'Instrument Serif', Georgia, serif;
+  --ff-body: 'Outfit', system-ui, sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+
+  --z-nav: 100;
+  --z-overlay: 200;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+::selection { background: var(--sage); color: var(--black); }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-body);
+  color: var(--white);
+  background: var(--black);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ---- NAV ---- */
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  padding: 20px 0;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.85) 0%, transparent 100%);
+  pointer-events: none;
+}
+.nav-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  pointer-events: auto;
+}
+.nav-left { display: flex; align-items: center; }
+
+.nav-burger {
+  background: none; border: none; cursor: pointer;
+  display: flex; flex-direction: column; gap: 5px;
+  padding: 4px 0;
+}
+.nav-burger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--white); transition: background 0.2s;
+}
+.nav-burger:hover span { background: var(--sage); }
+
+.nav-logo {
+  font-family: var(--ff-body);
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+.nav-logo-accent { color: var(--sage); }
+
+.nav-right { display: none; }
+
+/* NAV OVERLAY */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  background: var(--black);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 24px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+}
+.nav-overlay.open { opacity: 1; pointer-events: auto; }
+.nav-overlay-close {
+  position: absolute; top: 20px; right: clamp(20px, 4vw, 56px);
+  background: none; border: none; cursor: pointer;
+  padding: 8px;
+}
+.nav-overlay-close svg { width: 24px; height: 24px; color: var(--white); }
+.nav-overlay-link {
+  font-family: var(--ff-display);
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.nav-overlay-link:hover { color: var(--sage); }
+
+/* ---- HERO ---- */
+
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-editorial {
+  padding: clamp(100px, 14vh, 140px) clamp(20px, 4vw, 56px) 0;
+  max-width: 1320px;
+  margin: 0 auto;
+  width: 100%;
+}
+.hero-editorial h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin-bottom: 14px;
+}
+.hero-editorial h1 em {
+  font-style: italic;
+  color: var(--sage);
+}
+.hero-tagline {
+  font-size: clamp(14px, 1.5vw, 17px);
+  color: var(--white-60);
+  font-weight: 300;
+  max-width: 480px;
+  line-height: 1.5;
+}
+
+.hero-grid {
+  flex: 1;
+  display: flex;
+  gap: 0;
+  min-height: 0;
+  padding: clamp(28px, 4vh, 48px) clamp(16px, 3vw, 48px);
+}
+
+.hero-cat {
+  position: relative;
+  flex: 1 1 0%;
+  min-height: clamp(340px, 50vh, 520px);
+  overflow: hidden;
+  border-radius: 16px;
+  margin: 0 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: flex-grow 0.6s var(--ease);
+}
+.hero-cat:hover { flex-grow: 1.6; }
+
+.hero-cat-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.hero-cat-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease);
+}
+.hero-cat:hover .hero-cat-image img {
+  transform: scale(1.05);
+}
+
+.hero-cat-info {
+  position: relative;
+  z-index: 3;
+  padding: 24px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+.hero-cat-info-text { min-width: 0; }
+
+.hero-cat-name {
+  font-family: var(--ff-display);
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+.hero-cat:hover .hero-cat-name { color: var(--sage); }
+
+.hero-cat-desc {
+  font-size: 13px;
+  color: var(--white-60);
+  font-weight: 300;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hero-cat-cta {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--white-20);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease);
+}
+.hero-cat-cta svg { width: 16px; height: 16px; }
+.hero-cat:hover .hero-cat-cta {
+  background: var(--sage);
+  border-color: var(--sage);
+  transform: scale(1.05);
+}
+.hero-cat:hover .hero-cat-cta svg { color: var(--black); }
+
+.hero-cat::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 55%;
+  background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ---- PROOF STRIP ---- */
+
+.proof-strip {
+  border-top: 1px solid var(--white-10);
+  border-bottom: 1px solid var(--white-10);
+}
+.proof-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 20px clamp(20px, 4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.proof-item { font-size: 13px; color: var(--white-40); font-weight: 400; white-space: nowrap; }
+.proof-item strong { color: var(--white); font-weight: 600; }
+.proof-stars { color: #F5B731; font-size: 13px; }
+.proof-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--white-20); flex-shrink: 0; }
+
+/* ---- SECTION ---- */
+
+.section { padding: clamp(80px, 12vw, 140px) 0; }
+.section-inner { max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px); }
+.section-title {
+  font-family: var(--ff-display);
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.section-title em { font-style: italic; color: var(--sage); }
+
+/* ---- BEST-SELLERS ---- */
+
+.bestsellers-section { background: var(--black); }
+
+.bestsellers-intro {
+  max-width: 640px;
+  margin-bottom: 40px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--white-60);
+  font-weight: 300;
+}
+.bestsellers-intro strong { color: var(--white-90); font-weight: 500; }
+
+.bs-filters {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px;
+}
+.bs-filter-btn {
+  padding: 8px 20px;
+  font-family: var(--ff-body);
+  font-size: 13px; font-weight: 500;
+  color: var(--white-40);
+  background: transparent;
+  border: 1px solid var(--white-10);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.bs-filter-btn:hover { color: var(--white); border-color: var(--white-20); }
+.bs-filter-btn.active {
+  color: var(--black); background: var(--sage); border-color: var(--sage);
+}
+
+.bs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.bs-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--white-10);
+  background: var(--black-2);
+  transition: border-color 0.4s, transform 0.4s var(--ease);
+}
+.bs-card:hover {
+  border-color: rgba(122,158,126,0.3);
+  transform: translateY(-4px);
+}
+.bs-card.hide { display: none; }
+.bs-card-img {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  background: var(--black-3);
+}
+.bs-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.bs-card:hover .bs-card-img img { transform: scale(1.05); }
+.bs-card-body { padding: 20px; }
+.bs-card-tag {
+  display: inline-block;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--sage); font-weight: 500;
+  background: var(--sage-soft); padding: 4px 10px; border-radius: 100px;
+  margin-bottom: 10px;
+}
+.bs-card-name {
+  font-family: var(--ff-display);
+  font-size: 20px; font-weight: 400; margin-bottom: 4px;
+}
+.bs-card-desc {
+  font-size: 12px; color: var(--white-40); font-weight: 300;
+  margin-bottom: 14px; line-height: 1.5;
+}
+.bs-card-bottom {
+  display: flex; justify-content: space-between; align-items: baseline;
+}
+.bs-card-price {
+  font-family: var(--ff-mono);
+  font-size: 15px; color: var(--sage); font-weight: 500;
+}
+.bs-card-price span { font-size: 11px; color: var(--white-40); font-weight: 300; }
+.bs-card-rate {
+  font-size: 12px; color: var(--white-40);
+}
+.bs-card-rate strong { color: #F5B731; font-weight: 500; }
+
+/* ---- ENGAGEMENTS ---- */
+
+/* ---- ENGAGEMENTS ---- */
+
+.engagements-section {
+  position: relative;
+  overflow: hidden;
+  height: clamp(400px, 50vw, 520px);
+}
+.engage-image {
+  position: absolute;
+  inset: 0;
+}
+.engage-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.engage-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.75) 70%, var(--black) 100%);
+}
+.engage-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 2;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px) clamp(40px, 5vw, 56px);
+}
+.engage-content h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 28px;
+}
+.engage-content h2 em { font-style: italic; color: var(--sage); }
+.engage-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.engage-item {}
+.engage-item-title {
+  font-family: var(--ff-body);
+  font-size: 14px; font-weight: 600;
+  margin-bottom: 4px;
+}
+.engage-item-desc {
+  font-size: 13px; color: var(--white-60); font-weight: 300; line-height: 1.5;
+}
+
+/* ---- REVIEWS ---- */
+
+.reviews-section { background: var(--black); }
+
+/* ---- CTA ---- */
+
+.cta-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(80px, 12vw, 140px) 0;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--black) 0%, #0d1a0f 50%, var(--black) 100%);
+}
+.cta-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, var(--sage-soft) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+.cta-title {
+  font-family: var(--ff-display);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 0.95;
+  margin-bottom: 20px;
+}
+.cta-title em { font-style: italic; color: var(--sage); }
+.cta-sub {
+  font-size: 16px;
+  color: var(--white-60);
+  font-weight: 300;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-sage {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 32px;
+  background: var(--sage);
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 100px;
+  transition: box-shadow 0.3s, transform 0.25s var(--ease);
+}
+.btn-sage:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px var(--sage-glow), 0 8px 24px rgba(0,0,0,0.4);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 28px;
+  background: transparent;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid var(--white-20);
+  border-radius: 100px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn-ghost:hover { background: var(--white-05); border-color: var(--white-40); }
+
+/* ---- FOOTER ---- */
+
+.footer {
+  background: var(--black-2);
+  border-top: 1px solid var(--white-05);
+  padding: clamp(56px, 8vw, 80px) 0 0;
+}
+.footer-top {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px);
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 0.8fr 1fr;
+  gap: clamp(32px, 4vw, 64px);
+  padding-bottom: clamp(48px, 6vw, 64px);
+}
+.footer-brand-logo {
+  font-family: var(--ff-body);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: block;
+}
+.footer-brand-logo span { color: var(--sage); }
+.footer-brand-desc {
+  font-size: 13px;
+  color: var(--white-40);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 20px;
+  max-width: 280px;
+}
+.footer-contact-list { display: flex; flex-direction: column; gap: 10px; }
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--white-60);
+  transition: color 0.2s;
+}
+.footer-contact-item:hover { color: var(--sage); }
+.footer-contact-item svg { width: 16px; height: 16px; min-width: 16px; color: var(--sage); opacity: 0.7; }
+.footer-heading {
+  font-family: var(--ff-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-40);
+  margin-bottom: 20px;
+}
+.footer-nav { display: flex; flex-direction: column; gap: 12px; }
+.footer-nav a { font-size: 14px; color: var(--white-60); font-weight: 400; transition: color 0.2s; }
+.footer-nav a:hover { color: var(--sage); }
+.footer-social { display: flex; gap: 10px; margin-top: 20px; }
+.footer-social-link {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--white-10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-40);
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+.footer-social-link:hover { border-color: var(--sage); color: var(--sage); background: var(--sage-soft); }
+.footer-social-link svg { width: 16px; height: 16px; }
+.footer-bottom { border-top: 1px solid var(--white-05); }
+.footer-bottom-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 20px clamp(20px, 4vw, 56px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-copy { font-size: 12px; color: var(--white-20); font-weight: 300; }
+.footer-legal { display: flex; gap: 20px; }
+.footer-legal a { font-size: 12px; color: var(--white-20); font-weight: 300; transition: color 0.15s; }
+.footer-legal a:hover { color: var(--white-60); }
+
+.reviews-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.reviews-badge {
+  background: var(--black-2);
+  border: 1px solid var(--white-05);
+  border-radius: 16px;
+  padding: 40px 32px;
+  text-align: center;
+  position: sticky;
+  top: 120px;
+}
+.reviews-badge-score {
+  font-family: var(--ff-display);
+  font-size: 72px;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 8px;
+  color: var(--sage);
+}
+.reviews-badge-stars {
+  color: #F5B731;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.reviews-badge-count {
+  font-size: 14px;
+  color: var(--white-40);
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.reviews-badge-google {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--white-20);
+  font-weight: 400;
+}
+.reviews-badge-google svg { width: 14px; height: 14px; }
+
+.reviews-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.review-quote {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--white-05);
+}
+.review-quote:first-child { padding-top: 0; }
+.review-quote:last-child { border-bottom: none; }
+.review-quote-text {
+  font-family: var(--ff-display);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--white-70);
+  margin-bottom: 12px;
+}
+.review-quote-author {
+  font-size: 13px;
+  color: var(--white-30);
+  font-weight: 300;
+}
+
+/* ---- SCROLL REVEAL ---- */
+
+.rv { opacity: 1; transform: translateY(0); }
+.js .rv { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+.js .rv.vis { opacity: 1; transform: translateY(0); }
+.rv-d1 { transition-delay: 0.06s; }
+.rv-d2 { transition-delay: 0.12s; }
+.rv-d3 { transition-delay: 0.18s; }
+
+/* ---- MOBILE ---- */
+
+@media (max-width: 1024px) {
+  .hero-grid {
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 20px;
+  }
+  .hero-grid::-webkit-scrollbar { display: none; }
+  .hero-cat {
+    flex: 0 0 80%;
+    min-width: 80%;
+    scroll-snap-align: center;
+  }
+  .hero-cat:hover { flex-grow: 1; }
+  .hero-dots { display: flex; }
+  .hero-swipe-hint { display: block; }
+  .bs-grid { grid-template-columns: 1fr 1fr; }
+  .engage-strip { grid-template-columns: 1fr 1fr; }
+  .reviews-layout { grid-template-columns: 1fr; }
+  .reviews-badge { position: static; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .hero-editorial h1 { font-size: clamp(28px, 8vw, 40px); }
+  .hero-cat {
+    flex: 0 0 85%;
+    min-width: 85%;
+  }
+  .bs-grid { grid-template-columns: 1fr; }
+  .engage-strip { grid-template-columns: 1fr 1fr; }
+  .proof-inner { flex-wrap: wrap; justify-content: center; gap: 8px 12px; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom-inner { flex-direction: column; text-align: center; }
+  .cta-actions { flex-direction: column; align-items: stretch; }
+  .cta-actions .btn-sage,
+  .cta-actions .btn-ghost { justify-content: center; }
+}
+
+/* DOTS */
+.hero-dots {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  padding-bottom: 16px;
+}
+.hero-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--white-20);
+  border: none; cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.hero-dot.active {
+  background: var(--sage);
+  transform: scale(1.3);
+}
+
+/* SWIPE HINT */
+.hero-swipe-hint {
+  display: none;
+  text-align: center;
+  font-size: 11px;
+  color: var(--white-20);
+  padding-bottom: 12px;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* STICKY CTA — mobile only */
+.sticky-cta { display: none; }
+@media (max-width: 768px) {
+  .sticky-cta {
+    position: fixed;
+    bottom: 20px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    z-index: 150;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: var(--sage);
+    color: var(--black);
+    border-radius: 100px;
+    font-family: var(--ff-body);
+    font-size: 14px; font-weight: 600;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06);
+    animation: stickyPop 0.4s var(--ease) 2s forwards;
+    white-space: nowrap;
+  }
+  .sticky-cta svg { width: 16px; height: 16px; color: var(--black); flex-shrink: 0; }
+  @keyframes stickyPop {
+    to { transform: translateX(-50%) translateY(0); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <button class="nav-burger" id="nav-burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <a href="#" class="nav-logo">Dr <span class="nav-logo-accent">Smoke</span></a>
+  </div>
+</nav>
+
+<!-- NAV OVERLAY -->
+<div class="nav-overlay" id="nav-overlay">
+  <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Fermer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="#" class="nav-overlay-link">Fleurs</a>
+  <a href="#" class="nav-overlay-link">Huiles</a>
+  <a href="#" class="nav-overlay-link">Resines</a>
+  <a href="#" class="nav-overlay-link">Cosmetiques</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-editorial">
+    <h1>CBD premium, <em>naturellement</em></h1>
+    <p class="hero-tagline">Fleurs, huiles, resines et cosmetiques CBD. Qualite laboratoire, conseil personnalise. Biot, centre 3000.</p>
+  </div>
+  <div class="hero-grid" id="hero-grid">
+    <a href="#" class="hero-cat">
+      <div class="hero-cat-image">
+        <img src="fleurs-hero.png" alt="Fleurs CBD premium" loading="eager" fetchpriority="high">
+      </div>
+      <div class="hero-cat-info">
+        <div class="hero-cat-info-text">
+          <div class="hero-cat-name">Fleurs</div>
+          <div class="hero-cat-desc">Indoor, outdoor, greenhouse</div>
+        </div>
+        <div class="hero-cat-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="hero-cat">
+      <div class="hero-cat-image">
+        <img src="huiles-hero.png" alt="Huiles CBD" loading="eager">
+      </div>
+      <div class="hero-cat-info">
+        <div class="hero-cat-info-text">
+          <div class="hero-cat-name">Huiles</div>
+          <div class="hero-cat-desc">Full spectrum, broad spectrum</div>
+        </div>
+        <div class="hero-cat-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="hero-cat">
+      <div class="hero-cat-image">
+        <img src="resines-hero.png" alt="Resines CBD" loading="eager">
+      </div>
+      <div class="hero-cat-info">
+        <div class="hero-cat-info-text">
+          <div class="hero-cat-name">Resines</div>
+          <div class="hero-cat-desc">Hash, pollen, moonrock</div>
+        </div>
+        <div class="hero-cat-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="hero-cat">
+      <div class="hero-cat-image">
+        <img src="cosmetiques-hero.png" alt="Cosmetiques CBD" loading="eager">
+      </div>
+      <div class="hero-cat-info">
+        <div class="hero-cat-info-text">
+          <div class="hero-cat-name">Cosmetiques</div>
+          <div class="hero-cat-desc">Cremes, serums, baumes</div>
+        </div>
+        <div class="hero-cat-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="hero-dots" id="hero-dots">
+    <button class="hero-dot active" data-i="0"></button>
+    <button class="hero-dot" data-i="1"></button>
+    <button class="hero-dot" data-i="2"></button>
+    <button class="hero-dot" data-i="3"></button>
+  </div>
+  <div class="hero-swipe-hint" id="hero-swipe-hint">Glissez pour decouvrir</div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip rv">
+  <div class="proof-inner">
+    <span class="proof-item"><span class="proof-stars">★★★★★</span> <strong>4.9</strong> sur Google</span>
+    <span class="proof-dot"></span>
+    <span class="proof-item"><strong>71</strong> avis clients</span>
+    <span class="proof-dot"></span>
+    <span class="proof-item">Biot, <strong>Centre 3000</strong></span>
+    <span class="proof-dot"></span>
+    <span class="proof-item">Ouvert <strong>7j/7</strong></span>
+  </div>
+</div>
+
+<!-- BEST-SELLERS -->
+<section class="section bestsellers-section" id="bestsellers">
+  <div class="section-inner">
+    <h2 class="section-title rv" style="margin-bottom:24px;">Nos <em>best-sellers</em></h2>
+    <p class="bestsellers-intro rv">Les produits preferes de nos clients. <strong>CBD de qualite premium</strong>, teste en laboratoire, avec certificat d'analyse disponible en boutique. Conseil personnalise pour trouver le produit adapte a vos besoins.</p>
+
+    <div class="bs-filters rv">
+      <button class="bs-filter-btn active" data-filter="all">Tous</button>
+      <button class="bs-filter-btn" data-filter="fleurs">Fleurs</button>
+      <button class="bs-filter-btn" data-filter="huiles">Huiles</button>
+      <button class="bs-filter-btn" data-filter="resines">Resines</button>
+      <button class="bs-filter-btn" data-filter="cosmetiques">Cosmetiques</button>
+    </div>
+
+    <div class="bs-grid">
+      <div class="bs-card rv rv-d1" data-cat="fleurs">
+        <div class="bs-card-img">
+          <img src="https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=500&h=500&fit=crop&q=80" alt="Amnesia CBD" loading="lazy">
+        </div>
+        <div class="bs-card-body">
+          <div class="bs-card-tag">Fleurs</div>
+          <div class="bs-card-name">Amnesia Haze</div>
+          <div class="bs-card-desc">Indoor — Saveur citronnee, effets relaxants. CBD 18%</div>
+          <div class="bs-card-bottom">
+            <div class="bs-card-price">8&euro; <span>/ g</span></div>
+            <div class="bs-card-rate"><strong>★ 4.9</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bs-card rv rv-d2" data-cat="fleurs">
+        <div class="bs-card-img">
+          <img src="https://images.unsplash.com/photo-1586410885939-e66e876c59b4?w=500&h=500&fit=crop&q=80" alt="OG Kush CBD" loading="lazy">
+        </div>
+        <div class="bs-card-body">
+          <div class="bs-card-tag">Fleurs</div>
+          <div class="bs-card-name">OG Kush</div>
+          <div class="bs-card-desc">Greenhouse — Terreuse et boisee, detente profonde. CBD 15%</div>
+          <div class="bs-card-bottom">
+            <div class="bs-card-price">7&euro; <span>/ g</span></div>
+            <div class="bs-card-rate"><strong>★ 4.8</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bs-card rv rv-d3" data-cat="fleurs">
+        <div class="bs-card-img">
+          <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=500&h=500&fit=crop&q=80" alt="Strawberry CBD" loading="lazy">
+        </div>
+        <div class="bs-card-body">
+          <div class="bs-card-tag">Fleurs</div>
+          <div class="bs-card-name">Strawberry</div>
+          <div class="bs-card-desc">Indoor — Fruitee et douce, parfaite en infusion. CBD 20%</div>
+          <div class="bs-card-bottom">
+            <div class="bs-card-price">9&euro; <span>/ g</span></div>
+            <div class="bs-card-rate"><strong>★ 4.9</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bs-card rv rv-d1" data-cat="huiles">
+        <div class="bs-card-img">
+          <img src="https://images.unsplash.com/photo-1611070260299-0b3033405c8a?w=500&h=500&fit=crop&q=80" alt="Huile CBD 10%" loading="lazy">
+        </div>
+        <div class="bs-card-body">
+          <div class="bs-card-tag">Huiles</div>
+          <div class="bs-card-name">Huile Full Spectrum 10%</div>
+          <div class="bs-card-desc">30ml — Extraction CO2, gout naturel chanvre</div>
+          <div class="bs-card-bottom">
+            <div class="bs-card-price">29&euro;</div>
+            <div class="bs-card-rate"><strong>★ 5.0</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bs-card rv rv-d2" data-cat="huiles">
+        <div class="bs-card-img">
+          <img src="https://images.unsplash.com/photo-1616166358812-784bae38448e?w=500&h=500&fit=crop&q=80" alt="Huile CBD 20%" loading="lazy">
+        </div>
+        <div class="bs-card-body">
+          <div class="bs-card-tag">Huiles</div>
+          <div class="bs-card-name">Huile Broad Spectrum 20%</div>
+          <div class="bs-card-desc">30ml — Sans THC, saveur menthe, pipette doseur</div>
+          <div class="bs-card-bottom">
+            <div class="bs-card-price">45&euro;</div>
+            <div class="bs-card-rate"><strong>★ 4.8</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bs-card rv rv-d3" data-cat="resines">
+        <div class="bs-card-img">
+          <img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=500&h=500&fit=crop&q=80" alt="Hash CBD" loading="lazy">
+        </div>
+        <div class="bs-card-body">
+          <div class="bs-card-tag">Resines</div>
+          <div class="bs-card-name">Afghan Gold</div>
+          <div class="bs-card-desc">Resine artisanale — Texture souple, aromes epices. CBD 22%</div>
+          <div class="bs-card-bottom">
+            <div class="bs-card-price">10&euro; <span>/ g</span></div>
+            <div class="bs-card-rate"><strong>★ 4.9</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bs-card rv rv-d1" data-cat="resines">
+        <div class="bs-card-img">
+          <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=500&h=500&fit=crop&q=80" alt="Pollen CBD" loading="lazy">
+        </div>
+        <div class="bs-card-body">
+          <div class="bs-card-tag">Resines</div>
+          <div class="bs-card-name">Pollen Premium</div>
+          <div class="bs-card-desc">Pollen presse — Leger et parfume, ideal debutant. CBD 16%</div>
+          <div class="bs-card-bottom">
+            <div class="bs-card-price">8&euro; <span>/ g</span></div>
+            <div class="bs-card-rate"><strong>★ 4.7</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bs-card rv rv-d2" data-cat="cosmetiques">
+        <div class="bs-card-img">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500&h=500&fit=crop&q=80" alt="Creme CBD visage" loading="lazy">
+        </div>
+        <div class="bs-card-body">
+          <div class="bs-card-tag">Cosmetiques</div>
+          <div class="bs-card-name">Creme visage CBD</div>
+          <div class="bs-card-desc">50ml — Hydratante et apaisante, peaux sensibles</div>
+          <div class="bs-card-bottom">
+            <div class="bs-card-price">35&euro;</div>
+            <div class="bs-card-rate"><strong>★ 4.8</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bs-card rv rv-d3" data-cat="cosmetiques">
+        <div class="bs-card-img">
+          <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&h=500&fit=crop&q=80" alt="Baume CBD" loading="lazy">
+        </div>
+        <div class="bs-card-body">
+          <div class="bs-card-tag">Cosmetiques</div>
+          <div class="bs-card-name">Baume musculaire</div>
+          <div class="bs-card-desc">75ml — Effet chauffant, ideal sport et recuperation</div>
+          <div class="bs-card-bottom">
+            <div class="bs-card-price">28&euro;</div>
+            <div class="bs-card-rate"><strong>★ 5.0</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section class="engagements-section" id="engagements">
+  <div class="engage-image">
+    <img src="shop-bg.png" alt="Interieur boutique Dr Smoke Biot" loading="lazy">
+    <div class="engage-overlay"></div>
+  </div>
+  <div class="engage-content">
+    <h2 class="rv">Notre <em>boutique</em></h2>
+    <div class="engage-strip">
+      <div class="engage-item rv rv-d1">
+        <div class="engage-item-title">Teste en laboratoire</div>
+        <div class="engage-item-desc">Chaque lot analyse, certificats en boutique</div>
+      </div>
+      <div class="engage-item rv rv-d2">
+        <div class="engage-item-title">100% legal</div>
+        <div class="engage-item-desc">THC &lt; 0.3%, legislation francaise respectee</div>
+      </div>
+      <div class="engage-item rv rv-d3">
+        <div class="engage-item-title">Conseil personnalise</div>
+        <div class="engage-item-desc">On vous guide selon vos besoins</div>
+      </div>
+      <div class="engage-item rv rv-d1">
+        <div class="engage-item-title">Circuit court europeen</div>
+        <div class="engage-item-desc">Tracabilite de la graine a la boutique</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="section reviews-section" id="avis">
+  <div class="section-inner">
+    <div class="reviews-layout">
+      <div class="reviews-badge rv">
+        <div class="reviews-badge-score">4.9</div>
+        <div class="reviews-badge-stars">★★★★★</div>
+        <div class="reviews-badge-count">71 avis verifies</div>
+        <div class="reviews-badge-google">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Google Reviews
+        </div>
+      </div>
+
+      <div class="reviews-quotes">
+        <div class="review-quote rv rv-d1">
+          <div class="review-quote-text">"Meilleur CBD shop du coin. Les fleurs sont incroyables, le conseil est top et les prix honnetes."</div>
+          <div class="review-quote-author">Thomas M.</div>
+        </div>
+        <div class="review-quote rv rv-d2">
+          <div class="review-quote-text">"Venue pour des problemes de sommeil, le vendeur a pris le temps de tout expliquer. Je dors comme un bebe depuis 3 semaines."</div>
+          <div class="review-quote-author">Sophie L.</div>
+        </div>
+        <div class="review-quote rv rv-d3">
+          <div class="review-quote-text">"Boutique bien agencee, le mur vegetal est magnifique. Les resines sont top. Le staff connait ses produits."</div>
+          <div class="review-quote-author">Kevin R.</div>
+        </div>
+        <div class="review-quote rv rv-d1">
+          <div class="review-quote-text">"Tres bon accueil, produits de qualite. L'huile 20% m'a change la vie pour le stress au travail."</div>
+          <div class="review-quote-author">Marie D.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section rv">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <h2 class="cta-title">Passez en <em>boutique</em></h2>
+    <p class="cta-sub">495 Route de la Mer, Centre 3000, Biot. Ouvert 7 jours sur 7. Conseil gratuit et sans engagement.</p>
+    <div class="cta-actions">
+      <a href="tel:+33619428323" class="btn-sage">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/></svg>
+        06 19 42 83 23
+      </a>
+      <a href="https://maps.google.com/?q=Dr+Smoke+Biot+3000" target="_blank" rel="noopener" class="btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Itineraire
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-logo">Dr <span>Smoke</span></div>
+      <p class="footer-brand-desc">CBD Shop premium a Biot. Fleurs, huiles, resines et cosmetiques de qualite, testes en laboratoire. Conseil personnalise 7j/7.</p>
+      <div class="footer-contact-list">
+        <a href="tel:+33619428323" class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/></svg>
+          06 19 42 83 23
+        </a>
+        <a href="https://maps.google.com/?q=Dr+Smoke+Biot+3000" class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          495 Route de la Mer, Biot
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-heading">Produits</div>
+      <nav class="footer-nav">
+        <a href="#bestsellers">Fleurs CBD</a>
+        <a href="#bestsellers">Huiles CBD</a>
+        <a href="#bestsellers">Resines CBD</a>
+        <a href="#bestsellers">Cosmetiques CBD</a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="footer-heading">Infos pratiques</div>
+      <nav class="footer-nav">
+        <a href="#">Lun-Sam : 10h-19h30</a>
+        <a href="#">Dimanche : 10h-13h</a>
+        <a href="#">Centre commercial 3000</a>
+        <a href="#">Parking gratuit</a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="footer-heading">Suivez-nous</div>
+      <nav class="footer-nav">
+        <a href="https://instagram.com/drsmokebiot" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://maps.google.com/?q=Dr+Smoke+Biot+3000" target="_blank" rel="noopener">Google Maps</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://instagram.com/drsmokebiot" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span class="footer-copy">&copy; 2026 Dr Smoke. Tous droits reserves.</span>
+      <div class="footer-legal">
+        <a href="#">Mentions legales</a>
+        <a href="#">CGV</a>
+        <a href="#">Confidentialite</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY CTA -->
+<a href="tel:+33619428323" class="sticky-cta">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/></svg>
+  <span>Appelez la boutique</span>
+</a>
+
+<script>
+(function() {
+  var burger = document.getElementById('nav-burger');
+  var overlay = document.getElementById('nav-overlay');
+  var close = document.getElementById('nav-overlay-close');
+  if (burger && overlay) {
+    burger.addEventListener('click', function() {
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    function closeNav() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    close.addEventListener('click', closeNav);
+    overlay.querySelectorAll('.nav-overlay-link').forEach(function(link) {
+      link.addEventListener('click', closeNav);
+    });
+  }
+
+  /* SCROLL REVEALS */
+  document.documentElement.classList.add('js');
+  var revealEls = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('vis');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function(el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function(el) { el.classList.add('vis'); });
+  }
+
+  /* BEST-SELLERS FILTER */
+  var bsFilters = document.querySelectorAll('.bs-filter-btn');
+  var bsCards = document.querySelectorAll('.bs-card');
+  bsFilters.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      bsFilters.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var cat = btn.getAttribute('data-filter');
+      bsCards.forEach(function(card) {
+        if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+          card.classList.remove('hide');
+        } else { card.classList.add('hide'); }
+      });
+    });
+  });
+
+  /* SMOOTH SCROLL */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  /* MOBILE CAROUSEL */
+  var grid = document.getElementById('hero-grid');
+  var dots = document.querySelectorAll('.hero-dot');
+  var hint = document.getElementById('hero-swipe-hint');
+  if (!grid || !dots.length) return;
+
+  function updateDots() {
+    var cards = grid.querySelectorAll('.hero-cat');
+    var scrollLeft = grid.scrollLeft;
+    var cardWidth = cards[0].offsetWidth + 12;
+    var idx = Math.round(scrollLeft / cardWidth);
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === idx);
+    });
+  }
+
+  grid.addEventListener('scroll', function() {
+    updateDots();
+    if (hint) { hint.style.opacity = '0'; }
+  }, { passive: true });
+
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      var i = parseInt(dot.getAttribute('data-i'));
+      var cards = grid.querySelectorAll('.hero-cat');
+      var cardWidth = cards[0].offsetWidth + 12;
+      grid.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+    });
+  });
+
+  if (window.innerWidth <= 1024) {
+    setTimeout(function() {
+      grid.scrollBy({ left: 60, behavior: 'smooth' });
+      setTimeout(function() {
+        grid.scrollBy({ left: -60, behavior: 'smooth' });
+      }, 600);
+    }, 1500);
+  }
+})();
+</script>
+
+</body>
+</html>
