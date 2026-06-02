@@ -57,24 +57,78 @@ a { text-decoration: none; color: inherit; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: var(--z-nav);
-  padding: 20px 0;
-  background: linear-gradient(to bottom, rgba(10,10,10,0.85) 0%, transparent 100%);
-  pointer-events: none;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: rgba(10,10,10,0.65);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
 }
+.nav.nav-hidden { transform: translateY(-100%); }
+.nav::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--sage) 50%, transparent 100%);
+  opacity: 0.5;
+}
+
 .nav-inner {
   max-width: 1320px;
   margin: 0 auto;
   padding: 0 clamp(20px, 4vw, 56px);
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  height: 64px;
+  display: flex;
   align-items: center;
-  pointer-events: auto;
 }
-.nav-left { display: flex; align-items: center; }
+
+.nav-logo {
+  font-family: var(--ff-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+.nav-logo-accent { color: var(--sage); }
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+.nav-link {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--white-40);
+  letter-spacing: 0.02em;
+  transition: color 0.25s;
+  position: relative;
+  padding: 4px 0;
+}
+.nav-link:hover { color: var(--white); }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--sage);
+  transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.nav-link:hover::after { width: 100%; }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
 
 .nav-burger {
   background: none; border: none; cursor: pointer;
-  display: flex; flex-direction: column; gap: 5px;
+  display: none;
+  flex-direction: column; gap: 5px;
   padding: 4px 0;
 }
 .nav-burger span {
@@ -83,20 +137,6 @@ a { text-decoration: none; color: inherit; }
 }
 .nav-burger:hover span { background: var(--sage); }
 
-.nav-logo {
-  font-family: var(--ff-body);
-  font-size: clamp(16px, 2vw, 20px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  text-align: center;
-}
-.nav-logo-accent { color: var(--sage); }
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
 .nav-wa {
   display: inline-flex;
   align-items: center;
@@ -117,6 +157,11 @@ a { text-decoration: none; color: inherit; }
   box-shadow: 0 4px 16px rgba(37,211,102,0.3);
 }
 .nav-wa svg { width: 16px; height: 16px; fill: currentColor; }
+
+@media (max-width: 768px) {
+  .nav-center { display: none; }
+  .nav-burger { display: flex; }
+}
 
 /* NAV OVERLAY */
 .nav-overlay {
@@ -155,10 +200,37 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-editorial {
-  padding: clamp(100px, 14vh, 140px) clamp(20px, 4vw, 56px) 0;
+  padding: clamp(90px, 12vh, 120px) clamp(20px, 4vw, 56px) 0;
   max-width: 1320px;
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0 clamp(40px, 5vw, 80px);
+}
+.hero-editorial-left { flex: 1 1 480px; min-width: 0; }
+.hero-editorial-right {
+  flex: 1 1 340px;
+  min-width: 0;
+  padding-bottom: 4px;
+}
+.hero-eyebrow {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--sage);
 }
 .hero-editorial h1 {
   font-family: var(--ff-display);
@@ -166,19 +238,27 @@ a { text-decoration: none; color: inherit; }
   font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 0.95;
-  margin-bottom: 14px;
+  margin-bottom: 0;
 }
 .hero-editorial h1 em {
   font-style: italic;
   color: var(--sage);
 }
 .hero-tagline {
-  font-size: clamp(14px, 1.5vw, 17px);
+  font-size: clamp(14px, 1.3vw, 16px);
   color: var(--white-60);
   font-weight: 300;
-  max-width: 480px;
-  line-height: 1.5;
+  line-height: 1.7;
+  margin-bottom: 24px;
 }
+.hero-tagline strong { color: var(--white-90); font-weight: 500; }
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hero-actions .btn-sage { padding: 12px 24px; font-size: 13px; }
+.hero-actions .btn-ghost { padding: 12px 20px; font-size: 13px; }
 
 .hero-grid {
   flex: 1;
@@ -323,8 +403,8 @@ a { text-decoration: none; color: inherit; }
   opacity: 0.07;
   pointer-events: none;
 }
-.bestsellers-section::before { background-image: url('https://images.unsplash.com/photo-1501004318855-b174af8b0529?w=1920&q=80'); }
-.reviews-section::before { background-image: url('https://images.unsplash.com/photo-1501004318855-b174af8b0529?w=1920&q=80'); }
+.bestsellers-section::before { background-image: url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1920&q=80'); }
+.reviews-section::before { background-image: url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1920&q=80'); }
 
 /* ---- BEST-SELLERS ---- */
 
@@ -839,19 +919,22 @@ a { text-decoration: none; color: inherit; }
 <body>
 
 <!-- NAV -->
-<nav class="nav">
+<nav class="nav" id="nav">
   <div class="nav-inner">
-    <div class="nav-left">
-      <button class="nav-burger" id="nav-burger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
     <a href="#" class="nav-logo">Dr <span class="nav-logo-accent">Smoke</span></a>
+    <div class="nav-center">
+      <a href="#bestsellers" class="nav-link">Best-sellers</a>
+      <a href="#engagements" class="nav-link">Engagements</a>
+      <a href="#avis" class="nav-link">Avis</a>
+    </div>
     <div class="nav-right">
       <a href="https://wa.me/33600000000" class="nav-wa" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         <span>Contactez-nous</span>
       </a>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
@@ -861,17 +944,25 @@ a { text-decoration: none; color: inherit; }
   <button class="nav-overlay-close" id="nav-overlay-close" aria-label="Fermer">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
-  <a href="#" class="nav-overlay-link">Fleurs</a>
-  <a href="#" class="nav-overlay-link">Huiles</a>
-  <a href="#" class="nav-overlay-link">Resines</a>
-  <a href="#" class="nav-overlay-link">Cosmetiques</a>
+  <a href="#bestsellers" class="nav-overlay-link">Best-sellers</a>
+  <a href="#engagements" class="nav-overlay-link">Engagements</a>
+  <a href="#avis" class="nav-overlay-link">Avis</a>
 </div>
 
 <!-- HERO -->
 <section class="hero" id="accueil">
   <div class="hero-editorial">
-    <h1>CBD premium, <em>naturellement</em></h1>
-    <p class="hero-tagline">Fleurs, huiles, resines et cosmetiques CBD. Qualite laboratoire, conseil personnalise. Biot, centre 3000.</p>
+    <div class="hero-editorial-left">
+      <p class="hero-eyebrow">Boutique CBD &bull; Biot, Centre 3000</p>
+      <h1>Le meilleur du CBD,<br><em>selectionne pour vous</em></h1>
+    </div>
+    <div class="hero-editorial-right">
+      <p class="hero-tagline">Fleurs, huiles, resines, cosmetiques — chaque produit est <strong>teste en laboratoire</strong> et choisi pour sa purete. On vous guide avec un <strong>conseil personnalise</strong> pour trouver exactement ce qu'il vous faut.</p>
+      <div class="hero-actions">
+        <a href="#bestsellers" class="btn-sage">Nos best-sellers</a>
+        <a href="#engagements" class="btn-ghost">Nos engagements</a>
+      </div>
+    </div>
   </div>
   <div class="hero-grid" id="hero-grid">
     <a href="#" class="hero-cat">
@@ -985,7 +1076,7 @@ a { text-decoration: none; color: inherit; }
 
       <div class="bs-card rv rv-d2" data-cat="fleurs">
         <div class="bs-card-img">
-          <img src="https://images.unsplash.com/photo-1586410885939-e66e876c59b4?w=500&h=500&fit=crop&q=80" alt="OG Kush CBD" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=500&h=500&fit=crop&q=80" alt="OG Kush CBD" loading="lazy">
         </div>
         <div class="bs-card-body">
           <div class="bs-card-tag">Fleurs</div>
@@ -1000,7 +1091,7 @@ a { text-decoration: none; color: inherit; }
 
       <div class="bs-card rv rv-d3" data-cat="fleurs">
         <div class="bs-card-img">
-          <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=500&h=500&fit=crop&q=80" alt="Strawberry CBD" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=500&h=500&fit=crop&q=80" alt="Strawberry CBD" loading="lazy">
         </div>
         <div class="bs-card-body">
           <div class="bs-card-tag">Fleurs</div>
@@ -1015,7 +1106,7 @@ a { text-decoration: none; color: inherit; }
 
       <div class="bs-card rv rv-d1" data-cat="huiles">
         <div class="bs-card-img">
-          <img src="https://images.unsplash.com/photo-1611070260299-0b3033405c8a?w=500&h=500&fit=crop&q=80" alt="Huile CBD 10%" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=500&h=500&fit=crop&q=80" alt="Huile CBD 10%" loading="lazy">
         </div>
         <div class="bs-card-body">
           <div class="bs-card-tag">Huiles</div>
@@ -1030,7 +1121,7 @@ a { text-decoration: none; color: inherit; }
 
       <div class="bs-card rv rv-d2" data-cat="huiles">
         <div class="bs-card-img">
-          <img src="https://images.unsplash.com/photo-1616166358812-784bae38448e?w=500&h=500&fit=crop&q=80" alt="Huile CBD 20%" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=500&h=500&fit=crop&q=80" alt="Huile CBD 20%" loading="lazy">
         </div>
         <div class="bs-card-body">
           <div class="bs-card-tag">Huiles</div>
@@ -1362,6 +1453,16 @@ a { text-decoration: none; color: inherit; }
       }, 600);
     }, 1500);
   }
+})();
+
+(function(){
+  var lastY=0,nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(y>lastY&&y>80) nav.classList.add('nav-hidden');
+    else nav.classList.remove('nav-hidden');
+    lastY=y;
+  });
 })();
 </script>
 
